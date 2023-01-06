@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <Hamburger />
+      <Hamburger input={input} setInput={setInput} />
       <Login />
     {Object.entries(current).length === 0
       ? <h3>Loading...</h3>
