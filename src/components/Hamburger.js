@@ -8,10 +8,10 @@ const Hamburger = () => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event) => {
+    const openHamburger = (event) => {
       setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const closeHamburger = () => {
       setAnchorEl(null);
     };
 
@@ -22,7 +22,7 @@ const Hamburger = () => {
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={openHamburger}
         >
             <MenuIcon />
         </Button>
@@ -30,7 +30,7 @@ const Hamburger = () => {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={closeHamburger}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
@@ -43,9 +43,9 @@ const Hamburger = () => {
             horizontal: 'center',
           }}
         >
-            <MenuItem onClick={handleClose}>Get Weather for Somewhere Else</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
-            <MenuItem onClick={handleClose}>Feedback</MenuItem>
+            <MenuItem onClick={closeHamburger}>Get Weather for Somewhere Else</MenuItem>
+            <MenuItem onClick={closeHamburger}>Settings</MenuItem>
+            <MenuItem onClick={closeHamburger}>Feedback</MenuItem>
         </Menu>
         </>
     )
