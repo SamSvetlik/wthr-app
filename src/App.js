@@ -15,14 +15,21 @@ function App() {
 
   useEffect(()=> {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw Error(`Couldn't find any weather data for ${input}. Are you sure you spelled it correctly?`)
+        }
+        return res.json()})
       .then((data)=> {
         console.log(data)
         setCurrent(data.current)
         setForecast(data.forecast)
         setLocation(data.location)
       })
-      .catch(err => console.log(`Error: ${err}`))
+      .catch(err => {
+        alert(`Couldn't find any weather data for ${input}. Are you sure you spelled it correctly?`)
+
+      })
   }, [input])
 
   return (

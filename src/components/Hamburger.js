@@ -75,7 +75,7 @@ const Hamburger = (props) => {
                 <TextField 
                   id="name" 
                   placeholder="Search by city, ZIP code, or lat/lng" 
-                   
+                  type="search"
                   onChange={handleTextChange} 
                   required />
                   <Button variant="contained" color="primary" type="submit">Submit</Button>
