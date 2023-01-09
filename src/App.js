@@ -14,7 +14,7 @@ function App() {
   
 
   useEffect(()=> {
-    fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}`)
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
       .then(res => res.json())
       .then((data)=> {
         console.log(data)

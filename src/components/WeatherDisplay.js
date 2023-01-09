@@ -8,7 +8,10 @@ const WeatherDisplay = (props) => {
         <>
         <h3>Today: {forecast.forecastday[0].day.maxtemp_f}</h3>
         <h3>Now: {forecast.forecastday[0].hour[now].feelslike_f}</h3>
-        <h3>Later: {forecast.forecastday[0].hour[now + 4].feelslike_f}</h3>
+        <h3>Later: {!forecast.forecastday[0].hour[now + 4]
+                    ? forecast.forecastday[1].hour[now - 20].feelslike_f
+                    : forecast.forecastday[0].hour[now + 4].feelslike_f
+        }</h3>
         </>
     )
 }
