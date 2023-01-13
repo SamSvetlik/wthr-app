@@ -11,35 +11,71 @@ const WeatherDisplay = (props) => {
                 if (obj.feelslike_f < perfectTemp - 45) {
                     arr.push("Arctic")
                 }
-                if (obj.feelslike_f >= perfectTemp - 45 && obj.feelslike_f <= perfectTemp - 35) {
+                if (obj.feelslike_f >= perfectTemp - 45 && obj.feelslike_f < perfectTemp - 35) {
                     arr.push("Freezing")
                 }
-                if (obj.feelslike_f >= perfectTemp - 35 && obj.feelslike_f <= perfectTemp - 25) {
+                if (obj.feelslike_f >= perfectTemp - 35 && obj.feelslike_f < perfectTemp - 25) {
                     arr.push("Really cold")
                 }
-                if (obj.feelslike_f >= perfectTemp - 25 && obj.feelslike_f <= perfectTemp - 15) {
+                if (obj.feelslike_f >= perfectTemp - 25 && obj.feelslike_f < perfectTemp - 15) {
                     arr.push("Cold")
                 }
-                if (obj.feelslike_f >= perfectTemp -15 && obj.feelslike_f <= perfectTemp - 5) {
+                if (obj.feelslike_f >= perfectTemp -15 && obj.feelslike_f < perfectTemp - 5) {
                     arr.push("Chilly")
                 }
-                if (obj.feelslike_f >= perfectTemp - 5 && obj.feelslike_f <= perfectTemp + 5) {
+                if (obj.feelslike_f >= perfectTemp - 5 && obj.feelslike_f < perfectTemp + 5) {
                     arr.push("Nice")
                 }
-                if (obj.feelslike_f >= perfectTemp + 5 && obj.feelslike_f <= perfectTemp + 15) {
+                if (obj.feelslike_f >= perfectTemp + 5 && obj.feelslike_f < perfectTemp + 15) {
                     arr.push("Temperate")
                 }
-                if (obj.feelslike_f >= perfectTemp + 15 && obj.feelslike_f <= perfectTemp + 25) {
+                if (obj.feelslike_f >= perfectTemp + 15 && obj.feelslike_f < perfectTemp + 25) {
                     arr.push("Hot")
                 }
-                if (obj.feelslike_f >= perfectTemp + 25 && obj.feelslike_f <= perfectTemp + 35) {
+                if (obj.feelslike_f >= perfectTemp + 25 && obj.feelslike_f < perfectTemp + 35) {
                     arr.push("Too hot")
                 }
-                if (obj.feelslike_f > perfectTemp + 35) {
+                if (obj.feelslike_f >= perfectTemp + 35) {
                     arr.push("Scorching")
                 }
             }
-            return arr.join(",")
+            if (obj.cloud) {
+                if (obj.cloud >= 30 && obj.cloud < 60) {
+                    arr.push("partly cloudy")
+                }
+                if (obj.cloud >= 60 && obj.cloud < 90) {
+                    arr.push("cloudy")
+                }
+                if (obj.cloud >= 90) {
+                    arr.push("overcast")
+                }
+            }
+            if (obj.wind_mph) {
+                if (obj.wind_mph >= 10 && obj.wind_mph < 15) {
+                    arr.push("breezy")
+                }
+                if (obj.wind_mph >= 15 && obj.wind_mph < 22) {
+                    arr.push("windy")
+                }
+                if (obj.wind_mph >= 22 && obj.wind_mph < 30) {
+                    arr.push("gusty")
+                }
+                if (obj.wind_mph >= 30) {
+                    arr.push("tornado-like")
+                }
+            }
+            if (obj.dewpoint_f) {
+                if (obj.dewpoint_f >= 60 && obj.dewpoint_f < 65) {
+                    arr.push("humid")
+                }
+                if (obj.dewpoint_f >= 65 && obj.dewpoint_f < 70) {
+                    arr.push("muggy")
+                }
+                if (obj.dewpoint_f >= 70) {
+                    arr.push("super-humid")
+                }
+            }
+            return arr.join(", ")
         }
     
     return(

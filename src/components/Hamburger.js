@@ -16,7 +16,7 @@ const Hamburger = (props) => {
 
     const [openModal1, setModal1] = useState(false)
     const [query, setQuery] = useState("")
-
+ 
     const handleTextChange = (e) => {
       let newQuery = e.target.value
       setQuery(newQuery)
@@ -76,8 +76,10 @@ const Hamburger = (props) => {
                   id="name" 
                   placeholder="Search by city, ZIP code, or lat/lng" 
                   type="search"
+                  onKeyDown={(e) => e.stopPropagation()}
                   onChange={handleTextChange} 
-                  required />
+                  required 
+                  />
                   <Button variant="contained" color="primary" type="submit">Submit</Button>
                 </form>
               </Box>
