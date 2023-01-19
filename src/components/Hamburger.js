@@ -71,7 +71,7 @@ const Hamburger = (props) => {
             <MenuItem onClick={()=> setModal1(true)}>Get Weather for Somewhere Else</MenuItem>
             <Modal open={openModal1} onClose={()=> setModal1(false)}>
               <Box sx={style}>
-                <form onSubmit={handleQuerySubmit}>
+                <form onSubmit={handleQuerySubmit} style={{display: "grid"}}>
                 <TextField 
                   id="name" 
                   placeholder="Search by city, ZIP code, or lat/lng" 
