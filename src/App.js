@@ -9,8 +9,11 @@ function App() {
 
   const [input, setInput] = useState("Lubbock")
   const [current, setCurrent] = useState({})
+  // current turned out not to be useful, as it doesn't contain rain, snow, or dewpoint data.
+  // I kept it here because it is one of the three objects returned in the fetch request.
   const [forecast, setForecast] = useState({})
   const [location, setLocation] = useState({})
+  const [preference, setPreference] = useState(70)
   
 
   useEffect(()=> {
@@ -38,7 +41,7 @@ function App() {
       <Login />
     {Object.entries(current).length === 0
       ? <h3>Loading...</h3>
-      : <WeatherDisplay current={current} forecast={forecast} location={location}/>
+      : <WeatherDisplay current={current} forecast={forecast} location={location} perfectTemp={preference}/>
     }
     </div>
   );

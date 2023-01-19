@@ -1,13 +1,45 @@
 const WeatherDisplay = (props) => {
-    const { current, forecast, location } = props
+    const { current, forecast, location, perfectTemp } = props
 
         let today = new Date()
         let now = today.getHours()
-        let perfectTemp = 70
 
         const verbalize = (obj) => {
             let arr = []
-            if (obj.feelslike_f) {
+
+            if (obj.maxtemp_f) {
+                if (obj.maxtemp_f < perfectTemp - 45) {
+                    arr.push("Arctic")
+                }
+                if (obj.maxtemp_f >= perfectTemp - 45 && obj.maxtemp_f < perfectTemp - 35) {
+                    arr.push("Freezing")
+                }
+                if (obj.maxtemp_f >= perfectTemp - 35 && obj.maxtemp_f < perfectTemp - 25) {
+                    arr.push("Really cold")
+                }
+                if (obj.maxtemp_f >= perfectTemp - 25 && obj.maxtemp_f < perfectTemp - 15) {
+                    arr.push("Cold")
+                }
+                if (obj.maxtemp_f >= perfectTemp -15 && obj.maxtemp_f < perfectTemp - 5) {
+                    arr.push("Chilly")
+                }
+                if (obj.maxtemp_f >= perfectTemp - 5 && obj.maxtemp_f < perfectTemp + 5) {
+                    arr.push("Nice")
+                }
+                if (obj.maxtemp_f >= perfectTemp + 5 && obj.maxtemp_f < perfectTemp + 15) {
+                    arr.push("Temperate")
+                }
+                if (obj.maxtemp_f >= perfectTemp + 15 && obj.maxtemp_f < perfectTemp + 25) {
+                    arr.push("Hot")
+                }
+                if (obj.maxtemp_f >= perfectTemp + 25 && obj.maxtemp_f < perfectTemp + 35) {
+                    arr.push("Too hot")
+                }
+                if (obj.maxtemp_f >= perfectTemp + 35) {
+                    arr.push("Scorching")
+                }
+            }
+            if (!obj.maxtemp_f) {
                 if (obj.feelslike_f < perfectTemp - 45) {
                     arr.push("Arctic")
                 }
@@ -75,16 +107,81 @@ const WeatherDisplay = (props) => {
                     arr.push("super-humid")
                 }
             }
-            return arr.join(", ")
+            if (obj.daily_chance_of_rain > 0) {
+                if (obj.daily_chance_of_rain <= 20) {
+                    arr.push("probably not gonna rain")
+                }
+                if (obj.daily_chance_of_rain > 20 && obj.daily_chance_of_rain <= 40) {
+                    arr.push("maybe a little misty")
+                }
+                if (obj.daily_chance_of_rain > 40 && obj.daily_chance_of_rain <= 60) {
+                    arr.push("some sprinkles")
+                }
+                if (obj.daily_chance_of_rain > 60) {
+                    arr.push("rainy")
+                }
+            }
+            if (obj.chance_of_rain > 0) {
+                if (obj.chance_of_rain <= 20) {
+                    arr.push("probably not gonna rain")
+                }
+                if (obj.chance_of_rain > 20 && obj.chance_of_rain <= 40) {
+                    arr.push("maybe a little misty")
+                }
+                if (obj.chance_of_rain > 40 && obj.chance_of_rain <= 60) {
+                    arr.push("some sprinkles")
+                }
+                if (obj.chance_of_rain > 60) {
+                    arr.push("rainy")
+                }
+            }
+            if (obj.daily_chance_of_snow > 0) {
+                if (obj.daily_chance_of_snow <= 20) {
+                    arr.push("probably not gonna snow")
+                }
+                if (obj.daily_chance_of_snow > 20 && obj.daily_chance_of_snow <= 40) {
+                    arr.push("slightly sleeting")
+                }
+                if (obj.daily_chance_of_snow > 40 && obj.daily_chance_of_snow <= 60) {
+                    arr.push("somewhat snowy")
+                }
+                if (obj.daily_chance_of_snow > 60) {
+                    arr.push("snowy")
+                }
+            }
+            if (obj.chance_of_snow > 0) {
+                if (obj.chance_of_snow <= 20) {
+                    arr.push("probably not gonna snow")
+                }
+                if (obj.chance_of_snow > 20 && obj.chance_of_snow <= 40) {
+                    arr.push("slighly sleeting")
+                }
+                if (obj.chance_of_snow > 40 && obj.chance_of_snow <= 60) {
+                    arr.push("somewhat snowy")
+                }
+                if (obj.chance_of_snow > 60) {
+                    arr.push("snowy")
+                }
+            }
+            
+            if (arr.length > 2) {
+                arr.push("and " + arr.pop())
+                return arr.join(", ")
+            } else return arr.join(" and ")
         }
     
     return(
         <>
-        <h3>Today: {forecast.forecastday[0].day.maxtemp_f}</h3>
-        <h3>Now: {verbalize(current)}</h3>
+        <h1>Weather for {location.name}, {location.region}</h1>
+        <h3>Today: {verbalize(forecast.forecastday[0].day)}</h3>
+        <h3>Now: {verbalize(forecast.forecastday[0].hour[now])}</h3>
+        <h3>Soon: {!forecast.forecastday[0].hour[now + 1]
+                    ? verbalize(forecast.forecastday[1].hour[0])
+                    : verbalize(forecast.forecastday[0].hour[now + 1])
+        }</h3>
         <h3>Later: {!forecast.forecastday[0].hour[now + 4]
-                    ? forecast.forecastday[1].hour[now - 20].feelslike_f
-                    : forecast.forecastday[0].hour[now + 4].feelslike_f
+                    ? verbalize(forecast.forecastday[1].hour[now - 20])
+                    : verbalize(forecast.forecastday[0].hour[now + 4])
         }</h3>
         </>
     )
