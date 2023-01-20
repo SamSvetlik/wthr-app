@@ -34,11 +34,19 @@ const Hamburger = (props) => {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       width: 400,
-      bgcolor: 'background.paper',
+      color: "#020203",
+      bgcolor: '#6b728e',
       border: '2px solid #000',
       boxShadow: 24,
       p: 4,
+      // backgroundColor: '#6b728e'
     };
+    const colors = {
+      one: "#020203",
+      two: "#303250",
+      three: "#50577a",
+      four: "#6b728e"
+    }
 
     return(
         <>
@@ -49,7 +57,7 @@ const Hamburger = (props) => {
         aria-expanded={open ? 'true' : undefined}
         onClick={openHamburger}
         >
-            <MenuIcon />
+          <MenuIcon sx={{color: colors.one}}/>
         </Button>
         <Menu
         id="basic-menu"
@@ -68,19 +76,20 @@ const Hamburger = (props) => {
             horizontal: 'center',
           }}
         >
-            <MenuItem onClick={()=> setModal1(true)}>Get Weather for Somewhere Else</MenuItem>
+            <MenuItem onClick={()=> setModal1(true)} >Get Weather for Somewhere Else</MenuItem>
             <Modal open={openModal1} onClose={()=> setModal1(false)}>
               <Box sx={style}>
                 <form onSubmit={handleQuerySubmit} style={{display: "grid"}}>
                 <TextField 
                   id="name" 
+                  sx={{border: 2, borderRadius: 2, color: '#000000'}}
                   placeholder="Search by city, ZIP code, or lat/lng" 
                   type="search"
                   onKeyDown={(e) => e.stopPropagation()}
                   onChange={handleTextChange} 
                   required 
                   />
-                  <Button variant="contained" color="primary" type="submit">Submit</Button>
+                  <Button variant="contained" sx={{bgcolor: colors.one, color: colors.four, '&:hover': {bgcolor: colors.two}}} type="submit">Submit</Button>
                 </form>
               </Box>
             </Modal>

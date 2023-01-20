@@ -172,7 +172,7 @@ const WeatherDisplay = (props) => {
     
     return(
         <>
-        <h1>Weather for {location.name}, {location.region}</h1>
+        <h1>Weather for<br/> {location.name}, {location.region}</h1>
         <h3>Today: {verbalize(forecast.forecastday[0].day)}</h3>
         <h3>Now: {verbalize(forecast.forecastday[0].hour[now])}</h3>
         <h3>Soon: {!forecast.forecastday[0].hour[now + 1]

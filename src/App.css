@@ -1,9 +1,13 @@
 .App {
   text-align: center;
-  border: #111111 2px solid;
+  border: #50577a 9px solid;
+  border-radius: 10%;
   width: fit-content;
   margin: auto;
-  background-color: #333333;
+  margin-top: 20px;
+  background-color: #6b728e;
+  color: #020203;
+  padding: 5px;
 }
 
 
