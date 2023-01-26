@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react'
+import axios from 'axios';
 import { useState, useEffect } from 'react'
 import Hamburger from './components/Hamburger';
 import Login from './components/Login';
@@ -14,7 +15,12 @@ function App() {
   const [forecast, setForecast] = useState({})
   const [location, setLocation] = useState({})
   const [preference, setPreference] = useState(70)
+  const [user, setUser] = useState({})
   
+  useEffect(()=> {
+    axios.get('https://wthr-backend.vercel.app/users')
+    .then(response => console.log(response.data))
+  }, [])
 
   useEffect(()=> {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
