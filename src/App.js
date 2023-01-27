@@ -16,11 +16,12 @@ function App() {
   const [location, setLocation] = useState({})
   const [preference, setPreference] = useState(70)
   const [user, setUser] = useState({})
+  const [token, setToken] = useState("")
   
-  useEffect(()=> {
-    axios.get('https://wthr-backend.vercel.app/users')
-    .then(response => console.log(response.data))
-  }, [])
+  // useEffect(()=> {
+  //   axios.get('https://wthr-backend.vercel.app/users')
+  //   .then(response => console.log(response.data))
+  // }, [])
 
   useEffect(()=> {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
@@ -44,10 +45,10 @@ function App() {
   return (
     <div className="App">
       <Hamburger input={input} setInput={setInput} />
-      <Login />
+      <Login user={user} token={token} setUser={setUser} setToken={setToken}/>
     {Object.entries(current).length === 0
       ? <h3>Loading...</h3>
-      : <WeatherDisplay current={current} forecast={forecast} location={location} perfectTemp={preference}/>
+      : <WeatherDisplay current={current} forecast={forecast} location={location} perfectTemp={user.perfectTemp || 70}/>
     }
     </div>
   );
