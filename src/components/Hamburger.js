@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Button, Menu, MenuItem, Box, Modal, TextField } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Signup from "./Signup";
 
 const Hamburger = (props) => {
 
@@ -15,6 +16,9 @@ const Hamburger = (props) => {
     };
 
     const [openModal1, setModal1] = useState(false)
+    const [openModal2, setModal2] = useState(false)
+    const [openModal3, setModal3] = useState(false)
+    
     const [query, setQuery] = useState("")
  
     const handleTextChange = (e) => {
@@ -93,12 +97,12 @@ const Hamburger = (props) => {
                 </form>
               </Box>
             </Modal>
-            <MenuItem onClick={closeHamburger}>Settings</MenuItem>
-            {/* <Modal>
-              <Box>
-                <h1>Modal two</h1>
+            <MenuItem onClick={()=> setModal2(true)}>Signup</MenuItem>
+            <Modal open={openModal2} onClose={()=> setModal2(false)}>
+              <Box sx={style}>
+                <Signup />
               </Box>
-            </Modal> */}
+            </Modal>
             <MenuItem onClick={closeHamburger}>Feedback</MenuItem>
             {/* <Modal>
               <Box>

@@ -74,7 +74,7 @@ const Login = (props) => {
         }
 
     return(
-        <>
+        <div>
         <Button
         id="login-button"
         aria-controls={isOpen ? 'basic-menu' : undefined}
@@ -109,7 +109,7 @@ const Login = (props) => {
                 </form>
               </Box>
             </Modal>
-        </>
+        </div>
     )
 }
 

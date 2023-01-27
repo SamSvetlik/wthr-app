@@ -14,7 +14,6 @@ function App() {
   // I kept it here because it is one of the three objects returned in the fetch request.
   const [forecast, setForecast] = useState({})
   const [location, setLocation] = useState({})
-  const [preference, setPreference] = useState(70)
   const [user, setUser] = useState({})
   const [token, setToken] = useState("")
   
@@ -45,7 +44,9 @@ function App() {
   return (
     <div className="App">
       <Hamburger input={input} setInput={setInput} />
-      <Login user={user} token={token} setUser={setUser} setToken={setToken}/>
+      {Object.entries(user).length === 0 
+      ? <Login user={user} token={token} setUser={setUser} setToken={setToken}/>
+      : <div>Welcome, {user.name}!</div>}
     {Object.entries(current).length === 0
       ? <h3>Loading...</h3>
       : <WeatherDisplay current={current} forecast={forecast} location={location} perfectTemp={user.perfectTemp || 70}/>
