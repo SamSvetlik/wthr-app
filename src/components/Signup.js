@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 import { useState } from "react"
-import { Button, Box, TextField } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 
 const Signup = (props) => {
     const [name, setName] = useState("")
@@ -33,7 +33,7 @@ const Signup = (props) => {
             perfectTemp
         })
         .then((response)=> {
-            console.log(response)
+            // console.log(response)
             alert(`Signup successful!  You can now login with ${email}`)
             
         })

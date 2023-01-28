@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios";
-import { Button, Menu, MenuItem, Box, Modal, TextField } from '@mui/material';
+import { Button, Box, Modal, TextField } from '@mui/material';
 
 
 const Login = (props) => {
-    const { user, setUser } = props
+    const { setUser, token, setToken } = props
     
     const [isOpen, setIsOpen] = useState(false);
     
@@ -16,15 +16,15 @@ const Login = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     useEffect(()=> {
-        if (props.token) {
+        if (token) {
             axios.get(`https://wthr-backend.vercel.app/users/${email}`, {
                 headers: {
-                    Authorization: `Bearer ${props.token}`
+                    Authorization: `Bearer ${token}`
                 }
             })
             .then(response => setUser(response.data[0]))
         }
-    }, [props.token])
+    }, [token])
 
     const storeEmail = (e) => {
         let newValue = e.target.value
@@ -42,8 +42,8 @@ const Login = (props) => {
             password
         })
         .then((response)=> {
-            console.log(response)
-            props.setToken(response.data.token)
+            // console.log(response)
+            setToken(response.data.token)
         })
     }
     const handleSubmit = (e) => {

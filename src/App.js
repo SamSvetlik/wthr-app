@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react'
-import axios from 'axios';
 import { useState, useEffect } from 'react'
 import Hamburger from './components/Hamburger';
 import Login from './components/Login';
@@ -16,11 +15,7 @@ function App() {
   const [location, setLocation] = useState({})
   const [user, setUser] = useState({})
   const [token, setToken] = useState("")
-  
-  // useEffect(()=> {
-  //   axios.get('https://wthr-backend.vercel.app/users')
-  //   .then(response => console.log(response.data))
-  // }, [])
+
 
   useEffect(()=> {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
@@ -30,13 +25,13 @@ function App() {
         }
         return res.json()})
       .then((data)=> {
-        console.log(data)
+        // console.log(data)
         setCurrent(data.current)
         setForecast(data.forecast)
         setLocation(data.location)
       })
       .catch(err => {
-        alert(`Couldn't find any weather data for ${input}. Are you sure you spelled it correctly?`)
+        alert(`${err}`)
 
       })
   }, [input])
@@ -45,7 +40,7 @@ function App() {
     <div className="App">
       <Hamburger input={input} setInput={setInput} />
       {Object.entries(user).length === 0 
-      ? <Login user={user} token={token} setUser={setUser} setToken={setToken}/>
+      ? <Login token={token} setUser={setUser} setToken={setToken}/>
       : <div>Welcome, {user.name}!</div>}
     {Object.entries(current).length === 0
       ? <h3>Loading...</h3>
