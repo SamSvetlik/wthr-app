@@ -16,7 +16,7 @@ Default settings consider 70F to be the perfect temperature, but users can creat
 This app is very much a beta release.  There are many things I would like to add in the future, such as: 
 
 + Geolocation, so the app can know the user's default location
-+ Editable settings, so the user isn't fixed to the data they provided in account creationg
++ Editable settings, so the user isn't fixed to the data they provided in account creation
 + A feedback button, so users can submit complaints and ideas
 + Persistent login that doesn't reset on page refresh
 + Multiple themes, such as light and dark modes
