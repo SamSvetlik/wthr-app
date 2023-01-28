@@ -24,7 +24,7 @@ const Login = (props) => {
             })
             .then(response => setUser(response.data[0]))
         }
-    }, [token])
+    }, [token, email, setUser])
 
     const storeEmail = (e) => {
         let newValue = e.target.value
