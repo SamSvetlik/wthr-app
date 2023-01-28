@@ -17,7 +17,7 @@ const Hamburger = (props) => {
 
     const [openModal1, setModal1] = useState(false)
     const [openModal2, setModal2] = useState(false)
-    const [openModal3, setModal3] = useState(false)
+    // const [openModal3, setModal3] = useState(false)
     
     const [query, setQuery] = useState("")
  
@@ -100,11 +100,11 @@ const Hamburger = (props) => {
             <MenuItem onClick={()=> setModal2(true)}>Signup</MenuItem>
             <Modal open={openModal2} onClose={()=> setModal2(false)}>
               <Box sx={style}>
-                <Signup />
+                <Signup close={setModal2} return={closeHamburger}/>
               </Box>
             </Modal>
-            <MenuItem onClick={closeHamburger}>Feedback</MenuItem>
-            {/* <Modal>
+            {/* <MenuItem onClick={() => setModal3(true)}>Feedback</MenuItem>
+            <Modal>
               <Box>
                 <h1>Modal three</h1>
               </Box>

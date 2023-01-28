@@ -76,15 +76,17 @@ const Login = (props) => {
     return(
         <div>
         <Button
-        id="login-button"
-        aria-controls={isOpen ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={isOpen ? 'true' : undefined}
-        onClick={loginPopover}
+            variant="contained"
+            sx={{bgcolor: colors.one, color: colors.four, '&:hover': {bgcolor: colors.two}}} 
+            id="login-button"
+            aria-controls={isOpen ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={isOpen ? 'true' : undefined}
+            onClick={loginPopover}
         >
           Login
         </Button>
-        <Modal open={isOpen} >
+        <Modal open={isOpen} onClose={loginPopover}>
               <Box sx={style}>
                 <form  style={{display: "grid"}} onSubmit={handleSubmit}>
                 <TextField 

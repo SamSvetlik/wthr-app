@@ -1,3 +1,28 @@
+# Welcome to WTHR
+### A weather app that truncates data down to the basics
+
+Have you ever visited your weather site or app of choice, only to be overwhelmed with information?  Temperature, feels like temp, rain chance, air quality, UV index, on and on, in hourly increments, filling up the entire screen.  It's too much!  Sometimes you just wanna know if you need to put on a jacket to take out the trash.
+
+Enter WTHR!  The simple interface gives you three time frames: Now, an hour from now, and 4 hours from now.  For each of those times, it takes all those data points and condenses it down to words that actually mean something.  You'll go from
+
+### `45 feels like 39 wind SSW 11 mph humidity 41%`
+
+to
+
+### `Really cold and breezy`
+
+Default settings consider 70F to be the perfect temperature, but users can create an account to change this setting.  The default location is my home of Lubbock, Tx, but users can get the weather anywhere in the world by searching the name of a city, a zip code, or the lat/lng coordinates of a location.
+
+This app is very much a beta release.  There are many things I would like to add in the future, such as: 
+
++ Geolocation, so the app can know the user's default location
++ Editable settings, so the user isn't fixed to the data they provided in account creationg
++ A feedback button, so users can submit complaints and ideas
++ Persistent login that doesn't reset on page refresh
++ Multiple themes, such as light and dark modes
+
+This project was made with Create React App.  The default readme text follows.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
