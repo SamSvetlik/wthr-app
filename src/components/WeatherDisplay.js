@@ -1,5 +1,5 @@
 const WeatherDisplay = (props) => {
-    const { current, forecast, location, perfectTemp } = props
+    const { forecast, location, perfectTemp } = props
 
         let today = new Date()
         let now = today.getHours()
