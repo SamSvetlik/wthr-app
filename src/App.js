@@ -18,7 +18,7 @@ function App() {
 
 
   useEffect(()=> {
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
       .then(res => {
         if (!res.ok) {
           throw Error(`Couldn't find any weather data for ${input}. Are you sure you spelled it correctly?`)
