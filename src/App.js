@@ -15,10 +15,10 @@ function App() {
   const [location, setLocation] = useState({})
   const [user, setUser] = useState({})
   const [token, setToken] = useState("")
-
+ 
 
   useEffect(()=> {
-    fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${input}&days=2`)
+    fetch(`https://wthr-backend.vercel.app/weather/:${input}`)
       .then(res => {
         if (!res.ok) {
           throw Error(`Couldn't find any weather data for ${input}. Are you sure you spelled it correctly?`)
